@@ -1,0 +1,47 @@
+diff --git a/gui/theme/portrait_hdpi/splash.xml b/gui/theme/portrait_hdpi/splash.xml
+index c9d03163..19f62c9a 100644
+--- a/gui/theme/portrait_hdpi/splash.xml
++++ b/gui/theme/portrait_hdpi/splash.xml
+@@ -5,7 +5,7 @@
+ -->
+ <recovery>
+ 	<details>
+-		<resolution width="1080" h="1920"/>
++		<resolution width="1080" h="2400"/>
+ 		<themeversion>3</themeversion>
+ 	</details>
+ 	
+@@ -20,7 +20,7 @@
+ 		<variable name="of" value="%screen_h%-400"/>
+ 		<variable name="rec" value="%screen_h%-320"/>
+ 		<variable name="screen_width" value="1080"/>
+-		<variable name="screen_height" value="1920"/>
++		<variable name="screen_height" value="2400"/>
+ 		<variable name="header_color" value="#FF8038"/>
+ 		<variable name="background_color" value="#D34E38"/>
+ 	</variables>
+diff --git a/gui/theme/portrait_hdpi/ui.xml b/gui/theme/portrait_hdpi/ui.xml
+index 014899ef..c7baf350 100644
+--- a/gui/theme/portrait_hdpi/ui.xml
++++ b/gui/theme/portrait_hdpi/ui.xml
+@@ -2,7 +2,7 @@
+ <!-- OrangeFox theme by fordownloads and OrangeFox team -->
+ <recovery>
+ 	<details>
+-		<resolution width="1080" height="1920" />
++		<resolution width="1080" height="2400" />
+ 		<themeversion>3</themeversion>
+ 	</details>
+ 	
+diff --git a/partition.cpp b/partition.cpp
+index d49bf380..ffa30e3b 100644
+--- a/partition.cpp
++++ b/partition.cpp
+@@ -1218,6 +1218,7 @@ bool TWPartition::Is_File_System(string File_System) {
+ 		File_System == "yaffs2" ||
+ 		File_System == "exfat" ||
+ 		File_System == "f2fs" ||
++        File_System == "mifs" || // Xiaomi File System
+ 		File_System == "erofs" ||
+ 		File_System == "squashfs" ||
+ 		File_System == "auto")

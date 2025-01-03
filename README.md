@@ -1,4 +1,4 @@
-# TWRP device tree for Xiaomi 13
+# OFRP device tree for Xiaomi 13 with A15 and mifs support
 
 Xiaomi 13 (codenamed _"fuxi"_) is a high-end smartphone from Xiaomi.
 
@@ -24,7 +24,7 @@ Camera  | 50 MP Leica lens (wide), 10 MP (telephoto), 12 MP (ultrawide), 32 MP (
 
 ## Features
 
-Works:
+Tested Features:
 
 - [X] ADB
 - [X] Decryption
@@ -33,11 +33,39 @@ Works:
 - [X] Flashing
 - [X] MTP
 - [X] Sideload
-- [X] USB OTG
-- [X] Vibrator
+
+On device fuxi, with xiaomi.eu HyperOS 2 ROM.
+
+## Building OrangeFox 
+
+In order to support mifs decryption and to fix gui rendering issues, a patch to OFRP is required.
+Please use git to apply the provided patch (`android_bootable_recovery.patch`).
+
+A useful script `setup.sh` is provided. It provides building shortcuts and essential environment variables.
+Right after you downloaded everything, copy setup.sh to root directory of your workspace,
+and then run `source setup.sh fuxi`.
+
+Now you can use `ldmeal` as a shortcut to `lunch twrp_fuxi-eng` 
+and `ldmka` as a shortcut to `mka -j10 adbd recoveryimage`
+
+Before you start a build, make sure to edit the variables in `setup.sh` to match your needs (Ex. ccache).
+
+## About mifs
+
+I have seen somebody on CoolApk said `mifs` is `f2fs` with it's name changed.
+So, in order to support mifs, all you have to do is let `TWPartition::Is_File_System` recognize mifs.
+
+Until today, Jan. 3rd, 2025, there is no official HyperOS 2, which is Android 15 with mifs, available for fuxi.
+However, there are already some community made HyperOS 2 with mifs support that ports from another device available.
+
+For some unknown reason, after I added mifs support, data decryption takes more time than usual,
+but it works!
+All you have to do is be patient. If it stucks at OrangeFox logo for more than 5 minutes, you should give up and report this issue.
 
 ## To use it:
 
 ```
-fastboot flash recovery_ab out/target/product/fuxi/recovery.img
+fastboot flash recovery_ab OrangeFox-25.01.03_A15-Unofficial-fuxi.img
 ```
+
+Pre-built available at: https://t.me/ldsharepoint/28
